@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="A200">#42A5F5</color>
+    <color name="colorPrimaryDark">#0D47A1</color>
+    <color name="colorAccent">#BBDEFD</color>
+    <color name="colorBright">#E3F2FD</color>
+
+
+    <color name="C100">#BBDEFD</color>
+    <color name="C200">#90CAF9</color>
+    <color name="C300">#64B5F5</color>
+    <color name="C400">#42A5F5</color>
+    <color name="C500">#2196F3</color>
+    <color name="C600">#1E88E5</color>
+    <color name="C700">#1976D2</color>
+    <color name="C800">#1565C0</color>
+    <color name="C900">#0D47A1</color>
+</resources>

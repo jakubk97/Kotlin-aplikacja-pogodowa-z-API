@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Aplikacja Pogodowa API</string>
+    <string name="hint_search_string">Nazwa miejscowości</string>
+    <string name="button_search">Wyszukaj pogody</string>
+</resources>

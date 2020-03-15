@@ -14,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,12 +40,16 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun beginSearch(searchString: String) {
-        disposable = wikiApiServe.hitCountCheck(searchString,"b9a31dcb2d2b84843ea2eba6b48ff5f9","metric","pl")
+        disposable = wikiApiServe.hitCountCheck(
+            searchString,
+            "b9a31dcb2d2b84843ea2eba6b48ff5f9",
+            "metric",
+            "pl"
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-//                    txt_search_result.text = "${result.main.temp} stopni C"
                     city.text = "${result.name}"
                     temp.text = "${result.main.temp} °C"
                     tempDes.text = "Temperatura"
@@ -53,22 +58,17 @@ class MainActivity : AppCompatActivity() {
                     description.text = "${result.weather[0].description}"
 //                    date.text = "${java.time.format.DateTimeFormatter.ISO_INSTANT.format(java.time.Instant.ofEpochSecond(result.dt.toLong()))}"
                     date.text = "${getDate(result.dt.toLong() * 1000, "dd MM yyyy")}"
-                    if(result.weather[0].main == "Clear"){
+                    if (result.weather[0].main == "Clear") {
                         icon.setBackgroundResource(R.drawable.ic_wb_sunny_black_24dp)
-                    }
-                    else if(result.weather[0].main == "Rainy"){
+                    } else if (result.weather[0].main == "Rainy") {
                         icon.setBackgroundResource(R.drawable.ic_rain)
-                    }
-                    else if(result.weather[0].main == "Windy"){
+                    } else if (result.weather[0].main == "Windy") {
                         icon.setBackgroundResource(R.drawable.ic_icons8_winter_50)
-                    }
-                     else if(result.weather[0].main == "Clouds"){
+                    } else if (result.weather[0].main == "Clouds") {
                         icon.setBackgroundResource(R.drawable.ic_clouds)
                     }
-                    sunrise.text = "Wschód słońca: ${getDate(result.sys.sunrise.toLong()*1000, "hh:mm")}"
-                    sunset.text = "Zachód słońca: ${getDate(result.sys.sunset.toLong()*1000, "hh:mm")}"
-//                    sunrise.text = "Wschód słońca: ${java.time.format.DateTimeFormatter.ISO_INSTANT.format(java.time.Instant.ofEpochSecond(result.sys.sunrise.toLong()))}"
-//                    sunset.text = "Zachód słońca: ${java.time.format.DateTimeFormatter.ISO_INSTANT.format(java.time.Instant.ofEpochSecond(result.sys.sunset.toLong()))}"
+                    sunrise.text = "Wschód słońca: ${getTime(result.sys.sunrise.toLong() * 1000)}"
+                    sunset.text = "Zachód słońca: ${getTime(result.sys.sunset.toLong() * 1000)}"
                 }
                 ,
                 { error -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show() }
@@ -81,12 +81,18 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    fun getDate(milliSeconds: Long,dateFormat: String?): String? { // Create a DateFormatter object for displaying date in specified format.
+    fun getDate(milliSeconds: Long, dateFormat: String?): String? {
         val formatter = SimpleDateFormat(dateFormat)
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
         val calendar: Calendar = Calendar.getInstance()
         calendar.setTimeInMillis(milliSeconds)
         return formatter.format(calendar.getTime())
+    }
+
+    fun getTime(milliSeconds: Long): String? {
+        return String.format(
+            " %d:%d",
+            ((milliSeconds / (1000 * 60 * 60)) % 24),
+            ((milliSeconds / (1000 * 60)) % 60)
+        )
     }
 }

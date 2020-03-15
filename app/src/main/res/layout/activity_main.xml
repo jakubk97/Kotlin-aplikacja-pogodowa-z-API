@@ -3,32 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/C100"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/C100"
     tools:context="com.example.kuba.MainActivity">
-
-<!--    <TextView-->
-<!--        android:id="@+id/span1"-->
-<!--        android:padding="15dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/C200"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textSize="24sp" />-->
 
     <EditText
         android:id="@+id/edit_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_search_string"
-        android:textAlignment="center"
         android:background="@drawable/inputshape"
+        android:hint="@string/hint_search_string"
         android:shadowColor="#878787"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="25"
-        />
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btn_search"
@@ -39,153 +29,156 @@
 
     <TextView
         android:id="@+id/span2"
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="1dp"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="10sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_weight="2"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="vertical"
-                android:layout_weight="3">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/city"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold|italic" />
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="2" />
 
-                <TextView
-                    android:id="@+id/date"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold|italic" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/city"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold|italic" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
-
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_weight="2"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tempDes"
-                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:textAlignment="center"
-                    android:textSize="18sp"/>
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tempDes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/pressureDes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/pressure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/temp"
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-            </LinearLayout>
+                android:capitalize="sentences"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:padding="10dp" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/span3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_weight="2"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/pressureDes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textAlignment="center"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:id="@+id/pressure"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                android:padding="1dp"
+                android:textAlignment="center"
+                android:textSize="10sp" />
 
+            <TextView
+                android:id="@+id/sunrise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/sunset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp" />
 
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/span3"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/sunrise"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/sunset"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:gravity="center"
-            android:layout_height="wrap_content" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/span3"-->
-<!--            android:padding="15dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/C200"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="24sp" />-->
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     sunset.text = "Zachód słońca: ${getTime(result.sys.sunset.toLong() * 1000)}"
                 }
                 ,
-                { error -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show() }
+                { error -> Toast.makeText(this, "Wystąpił błąd. Sprawdź połączenie z internetem/poprawność danych", Toast.LENGTH_LONG).show() } //error.message
             )
     }
 

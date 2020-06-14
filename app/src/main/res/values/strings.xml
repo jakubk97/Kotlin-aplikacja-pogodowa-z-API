@@ -2,4 +2,10 @@
     <string name="app_name">Aplikacja Pogodowa API</string>
     <string name="hint_search_string">Nazwa miejscowości</string>
     <string name="button_search">Wyszukaj pogody</string>
+    <string name="miasto">Miasto</string>
+    <string name="opis_pogody">Opis pogody</string>
+    <string name="enter_city">Wprowadź miasto</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,255 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
-
-    <TableLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:layout_above="@+id/bottom_navigation_view"
+        android:layout_marginBottom="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/edit_search_miejscowosc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/inputshape"
-            android:hint="@string/hint_search_string"
-            android:shadowColor="#878787"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="25"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btn_search_miejscowosc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
-            android:text="Wyszukaj pogody wg miejscowości" />
-
-        <EditText
-            android:id="@+id/edit_search_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/inputshape"
-            android:hint="Id"
-            android:shadowColor="#878787"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="25"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btn_search_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
-            android:text="Wyszukaj pogody wg id" />
-
-        <EditText
-        android:id="@+id/edit_search_koordynaty_dlugosc"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/inputshape"
-        android:hint="Koordynaty"
-        android:shadowColor="#878787"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="25"
-        android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/edit_search_koordynaty_szerokosc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/inputshape"
-            android:hint="Koordynaty"
-            android:shadowColor="#878787"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="25"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btn_search_koordynaty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
-            android:text="Wyszukaj pogody wg koordynatów" />
-
-        <EditText
-            android:id="@+id/edit_search_kod_pocztowy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/inputshape"
-            android:hint="Kod pocztowy"
-            android:shadowColor="#878787"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="25"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btn_search_kod_pocztowy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
-            android:text="Wyszukaj pogody wg kodu pocztowego" />
-
-        <TextView
-            android:id="@+id/span2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:textAlignment="center"
-            android:textSize="10sp" />
+        android:layout_alignParentBottom="true"
+        app:elevation="6dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_navigation" />
 
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="2" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:id="@+id/city"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:textAlignment="center"
-                            android:textSize="24sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/date"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:textAlignment="center"
-                            android:textSize="24sp"
-                            android:textStyle="bold|italic" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:id="@+id/tempDes"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/temp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:id="@+id/pressureDes"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/pressure"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:textAlignment="center"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:capitalize="sentences"
-                    android:textStyle="italic"
-                    android:gravity="center"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/span3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp"
-                    android:textAlignment="center"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/sunrise"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/sunset"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp" />
-
-
-            </LinearLayout>
-        </ScrollView>
-
-    </TableLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

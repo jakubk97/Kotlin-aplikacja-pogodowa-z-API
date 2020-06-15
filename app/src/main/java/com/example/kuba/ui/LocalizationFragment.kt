@@ -9,19 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-
+import android.widget.Toast
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.weather_data.*
 import com.example.kuba.R
 import com.example.kuba.WeatherApiService
 import com.example.kuba.helpers.DateAndTimeHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.search_city.*
-import kotlinx.android.synthetic.main.weather_data.*
+import kotlinx.android.synthetic.main.search_coord.*
 
-class CityFragment : Fragment() {
+class LocalizationFragment : Fragment() {
 
     private var disposable: Disposable? = null
 
@@ -33,27 +32,30 @@ class CityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_city, container, false)
+        return inflater.inflate(R.layout.fragment_localization, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_search_city.setOnClickListener {
-            if (edit_search_city.text.toString().isNotEmpty()) {
-                beginSearchCity(edit_search_city.text.toString())
+        button_search_localization.setOnClickListener {
+            if (edit_search_x.text.toString().isNotEmpty() && edit_search_y.text.toString().isNotEmpty()) {
+                beginSearchCoords(
+                    edit_search_x.text.toString(),
+                    edit_search_y.text.toString()
+                )
                 val imm =
                     requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(button_search_city.windowToken, 0)
+                imm.hideSoftInputFromWindow(button_search_localization.windowToken, 0)
             }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun beginSearchCity(searchString: String) {
-        disposable = wikiApiServe.hitCity(
-            searchString,
+    private fun beginSearchCoords(searchStringSzerokosc: String, searchStringDlugosc: String) {
+        disposable = wikiApiServe.hitCoords(
+            searchStringSzerokosc,
+            searchStringDlugosc,
             "b9a31dcb2d2b84843ea2eba6b48ff5f9",
             "metric",
             "pl"
@@ -86,11 +88,12 @@ class CityFragment : Fragment() {
                         "${DateAndTimeHelper().getTime(result.sys.sunrise.toLong() * 1000)}"
                     weather_sunset.text =
                         "${DateAndTimeHelper().getTime(result.sys.sunset.toLong() * 1000)}"
+
                 },
                 {
                     Toast.makeText(
                         requireContext(),
-                        "Wystąpił błąd. Sprawdź połączenie z internetem lub poprawność wpisanego miasta",
+                        "Wystąpił błąd. Sprawdź połączenie z internetem lub poprawność wprowadzonych współrzędnych",
                         Toast.LENGTH_LONG
                     ).show()
                 } //error.message

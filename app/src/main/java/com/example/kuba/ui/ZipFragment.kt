@@ -1,6 +1,5 @@
 package com.example.kuba.ui
 
-
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -11,17 +10,16 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-
 import com.example.kuba.R
+import kotlinx.android.synthetic.main.search_zip.*
 import com.example.kuba.WeatherApiService
 import com.example.kuba.helpers.DateAndTimeHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.search_city.*
 import kotlinx.android.synthetic.main.weather_data.*
 
-class CityFragment : Fragment() {
+class ZipFragment : Fragment() {
 
     private var disposable: Disposable? = null
 
@@ -33,26 +31,25 @@ class CityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_city, container, false)
+        return inflater.inflate(R.layout.fragment_zip, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_search_city.setOnClickListener {
-            if (edit_search_city.text.toString().isNotEmpty()) {
-                beginSearchCity(edit_search_city.text.toString())
+        button_search_zip.setOnClickListener {
+            if (edit_search_zip.text.toString().isNotEmpty()) {
+                beginSearchZIP(edit_search_zip.text.toString())
                 val imm =
                     requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(button_search_city.windowToken, 0)
+                imm.hideSoftInputFromWindow(button_search_zip.windowToken, 0)
             }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun beginSearchCity(searchString: String) {
-        disposable = wikiApiServe.hitCity(
+    private fun beginSearchZIP(searchString: String) {
+        disposable = wikiApiServe.hitZIP(
             searchString,
             "b9a31dcb2d2b84843ea2eba6b48ff5f9",
             "metric",
@@ -62,11 +59,10 @@ class CityFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    weather_city.text = result.name
-                    weather_temp.text = "${result.main.temp} °C"
-                    weather_pressure.text = "${result.main.pressure} hPa"
-                    weather_humidity.text = "${result.main.humidity} %"
-                    weather_description.text = result.weather[0].description
+                    weather_city.text = "${result.name}"
+                    weather_temp.text = "${result.main.temp.toInt()} °C"
+                    weather_pressure.text = "${result.main.pressure.toInt()} hPa"
+                    weather_description.text = "${result.weather[0].description}"
                     weather_date.text =
                         "${DateAndTimeHelper().getDate(result.dt.toLong() * 1000, "dd MM yyyy")}"
                     if (result.weather[0].main == "Clear") {
@@ -78,19 +74,16 @@ class CityFragment : Fragment() {
                     } else if (result.weather[0].main == "Clouds") {
                         weather_icon.setBackgroundResource(R.drawable.ic_clouds)
                     }
-                    weather_icon_pressure.setBackgroundResource(R.drawable.ic_pressure)
-                    weather_icon_humidity.setBackgroundResource(R.drawable.ic_humidity)
-                    sunrise_label.setText("Wschód")
-                    sunset_label.setText("Zachód")
                     weather_sunrise.text =
-                        "${DateAndTimeHelper().getTime(result.sys.sunrise.toLong() * 1000)}"
+                        "Wschód słońca: ${DateAndTimeHelper().getTime(result.sys.sunrise.toLong() * 1000)}"
                     weather_sunset.text =
-                        "${DateAndTimeHelper().getTime(result.sys.sunset.toLong() * 1000)}"
+                        "Zachód słońca: ${DateAndTimeHelper().getTime(result.sys.sunset.toLong() * 1000)}"
+
                 },
                 {
                     Toast.makeText(
                         requireContext(),
-                        "Wystąpił błąd. Sprawdź połączenie z internetem lub poprawność wpisanego miasta",
+                        "Wystąpił błąd. Sprawdź połączenie z internetem lub sprawdź poprawność wpisanego kodu",
                         Toast.LENGTH_LONG
                     ).show()
                 } //error.message

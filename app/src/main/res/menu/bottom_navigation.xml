@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_city"
+        android:title="@string/miasto"
+        android:icon="@drawable/ic_city" />
+    <item android:id="@+id/menu_localization"
+        android:title="@string/localization"
+        android:icon="@drawable/ic_localization" />
+    <item android:id="@+id/menu_zip"
+        android:title="@string/zip_code"
+        android:icon="@drawable/ic_mail" />
+</menu>
